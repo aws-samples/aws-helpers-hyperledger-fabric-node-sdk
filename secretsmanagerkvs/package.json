@@ -1,0 +1,23 @@
+{
+  "name": "aws-helper-fabric-node-sdk-secretsmanagerkvs",
+  "version": "1.0.0",
+  "description": "Implementation of Key-Value Store interface for Amazon Secrets Manager service.",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "kvs",
+    "secrets-manager"
+  ],
+  "dependencies": {
+    "aws-sdk": "^2.494.0",
+    "log4js": "^3.0.6",
+    "timed-cache": "^1.1.3"
+  },
+  "devDependencies": {
+    "mocha": "5.2.0"
+  },
+  "author": "vlason@amazon.com",
+  "license": "Apache-2.0"
+}
