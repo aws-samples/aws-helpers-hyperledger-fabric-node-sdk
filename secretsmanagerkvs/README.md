@@ -6,11 +6,12 @@ A simple Key-Value store interface library for Amazon Secrets Manager service. I
 
 1. Make sure you are using NodeJS version 10 and above.
 2. Configure your [AWS NodeJS SDK](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/configuring-the-jssdk.html)
+3. Please make sure you set environment variable `AWS_REGION` to the region you are planning to you use, like this: `export AWS_REGION=us-east-1`
 
 ### Usage
 
 ``` Javascript
-const SecretsManagerKVS = require("aws-helper-fabric-node-sdk-secretsmanagerkvs");
+const SecretsManagerKVS = require("secretsmanagerkvs");
 
 (async () => {
     const key = "key-priv"

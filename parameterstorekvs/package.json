@@ -1,5 +1,5 @@
 {
-  "name": "aws-helper-fabric-node-sdk-parameterstorekvs",
+  "name": "parameterstorekvs",
   "version": "1.0.0",
   "description": "Implementation of Key-Value Store interface for Amazon Systems Manager Parameter Store service.",
   "main": "app.js",

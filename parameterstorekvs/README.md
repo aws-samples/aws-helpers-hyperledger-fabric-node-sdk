@@ -6,11 +6,12 @@ A simple Key-Value store interface library for Amazon Systems Manager Parameter 
 
 1. Make sure you are using NodeJS version 10 and above.
 2. Configure your [AWS NodeJS SDK](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/configuring-the-jssdk.html)
+3. Please make sure you set environment variable `AWS_REGION` to the region you are planning to you use, like this: `export AWS_REGION=us-east-1`
 
 ### Usage
 
 ``` Javascript
-const ParameterStoreKVS = require("aws-helper-fabric-node-sdk-parameterstorekvs");
+const ParameterStoreKVS = require("parameterstorekvs");
 
 (async () => {
     const key = "config"

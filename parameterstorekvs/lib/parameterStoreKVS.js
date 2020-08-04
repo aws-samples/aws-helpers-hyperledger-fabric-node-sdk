@@ -25,9 +25,14 @@ module.exports = class ParameterStoreKVS {
     constructor(params) {
 
         this.__ssm = new AWS.SSM();
-        this.prefix = params ? params.prefix + "/" : "/";
+
+        this.prefix = `${(params && params.prefix) || ''}`;
+        if (this.prefix.length) {
+            this.prefix += '/';
+        }
+
         this.maxRetries = 10;
-        const cacheTTL = params ? params.cacheTtl ? params.cacheTtl : DEFAULT_TTL : DEFAULT_TTL;
+        const cacheTTL = (params && params.cacheTtl) || DEFAULT_TTL;
         logger.debug(`Set default TTL to ${cacheTTL}`)
         this.__cache = new Cache({
             defaultTtl: cacheTTL
@@ -40,13 +45,12 @@ module.exports = class ParameterStoreKVS {
     // Get parameter from parameter store by Id
     getValue(key) {
         const fcnName = "[ParameterStoreKVS.getValue]";
-        const self = this;
-        const paramId = self.prefix + key;
-        const ssm = self.__ssm;
+        const paramId = this.prefix + key;
+        const ssm = this.__ssm;
 
         return new Promise((resolve, reject) => {
             // Retrieving cached value first if it exists
-            const cachedValue = self.__cache.get(paramId);
+            const cachedValue = this.__cache.get(paramId);
             if (cachedValue) {
                 logger.debug(`${fcnName}: Retrieved value from cache`);
                 resolve(cachedValue);
@@ -62,8 +66,7 @@ module.exports = class ParameterStoreKVS {
                         //throw new Error(`${fcnName}: ${err}`)
                     } else {
                         // Saving value to cache
-                        self.__cache.put(paramId, data.Parameter.Value);
-
+                        this.__cache.put(paramId, data.Parameter.Value);
                         resolve(data.Parameter.Value);
                     }
                 });
@@ -74,10 +77,9 @@ module.exports = class ParameterStoreKVS {
     //Put parameter to Parameter Store by Id
     setValue(key, value) {
         const fcnName = "[ParameterStoreKVS.setValue]";
-        const self = this;
-        const paramId = self.prefix + key;
+        const paramId = this.prefix + key;
         const data = value;
-        const ssm = self.__ssm;
+        const ssm = this.__ssm;
 
         return new Promise(async (resolve, reject) => {
             let params = {
@@ -88,7 +90,7 @@ module.exports = class ParameterStoreKVS {
                 Value: data,
                 /* required */
                 //AllowedPattern: 'STRING_VALUE',
-                //Description: 'STRING_VALUE',
+                Description: 'Parameter for a custom application',
                 //KeyId: 'STRING_VALUE',
                 //Overwrite: true,
                 //Policies: 'STRING_VALUE',
@@ -99,7 +101,7 @@ module.exports = class ParameterStoreKVS {
                 // }],
                 Tier: "Intelligent-Tiering"
             };
-            const paramValue = await self.getValue(key);
+            const paramValue = await this.getValue(key);
             // If param does not yet exists in the store, create a new one and tag it
             // else: overwrite existing version.
             if (!paramValue) {
@@ -131,7 +133,7 @@ module.exports = class ParameterStoreKVS {
                     }
                 } else {
                     // Updating cache first
-                    self.__cache.put(paramId, value);
+                    this.__cache.put(paramId, value);
 
                     resolve(data);
                 }

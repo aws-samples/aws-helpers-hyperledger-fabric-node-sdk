@@ -1,5 +1,5 @@
 {
-  "name": "aws-helper-fabric-node-sdk-secretsmanagerkvs",
+  "name": "secretsmanagerkvs",
   "version": "1.0.0",
   "description": "Implementation of Key-Value Store interface for Amazon Secrets Manager service.",
   "main": "app.js",
