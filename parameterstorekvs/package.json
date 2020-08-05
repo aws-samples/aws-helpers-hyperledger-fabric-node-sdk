@@ -1,16 +1,24 @@
 {
-  "name": "parameterstorekvs",
+  "name": "aws-helpers-hlf-node-parameterstorekvs",
   "version": "1.0.0",
   "description": "Implementation of Key-Value Store interface for Amazon Systems Manager Parameter Store service.",
   "main": "app.js",
   "scripts": {
     "test": "mocha --timeout 5000"
   },
+  "engines": {
+    "node": ">=0.8.10"
+  },
   "keywords": [
     "kvs",
-    "systems-manager",
+    "aws",
+    "aws-systems-manager",
     "parameter-store"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aws-samples/aws-helpers-hyperledger-fabric-node-sdk/parameterstorekvs"
+  },
   "dependencies": {
     "aws-sdk": "^2.494.0",
     "log4js": "^3.0.6",

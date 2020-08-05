@@ -1,15 +1,23 @@
 {
-  "name": "secretsmanagerkvs",
+  "name": "aws-helpers-hlf-node-secretsmanagerkvs",
   "version": "1.0.0",
   "description": "Implementation of Key-Value Store interface for Amazon Secrets Manager service.",
   "main": "app.js",
   "scripts": {
     "test": "mocha"
   },
+  "engines": {
+    "node": ">=0.8.10"
+  },
   "keywords": [
     "kvs",
-    "secrets-manager"
+    "aws",
+    "aws-secrets-manager"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aws-samples/aws-helpers-hyperledger-fabric-node-sdk/secretsmanagerkvs"
+  },
   "dependencies": {
     "aws-sdk": "^2.494.0",
     "log4js": "^3.0.6",
