@@ -17,10 +17,10 @@ const ParameterStoreKVS = require("parameterstorekvs");
     const key = "config"
     const value = "myAppConfigValue"
     try {
-        // Pre-configuring all application-specific configuration keys to start with "/myAppConfigPrefix"
+        // Pre-configuring all application-specific configuration keys to start with "/myAppConfigPrefix" and cache TTL of 5 minutes
         const kvs = new ParameterStoreKVS({
             prefix: "/myAppConfigPrefix",
-            cacheTtl: 60*60*1000
+            cacheTtl: 5*60*1000
         })
         // Put value to Systems Manager under key "/myAppConfigPrefix/config" and value "myAppConfigValue"
         const response = await kvs.setValue(key, value);

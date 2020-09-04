@@ -14,7 +14,7 @@
 const AWS = require('aws-sdk');
 const Cache = require('timed-cache')
 const logger = require("./logging").getLogger("secrets-manager");
-const DEFAULT_TTL = 60 * 60 * 1000; // Default cache TTL is 1 hour
+const DEFAULT_TTL = 60 * 1000; // Default cache TTL is 1 minute
 
 const KeyTypes = {
     Public: '-pub',

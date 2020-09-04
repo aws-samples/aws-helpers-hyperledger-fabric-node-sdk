@@ -17,9 +17,10 @@ const SecretsManagerKVS = require("secretsmanagerkvs");
     const key = "key-priv"
     const value = "privateKey"
     try {
+        // Pre-configuring all application-specific secrets paths to start with "/myAppConfigPrefix" and cache TTL of 5 minutes
         const kvs = new SecretsManagerKVS({
             prefix: "/myappSecretsPrefix",
-            cacheTtl: 60 * 1000
+            cacheTtl: 5 * 60 * 1000
         })
         // Put value to Systems Manager under key "/myappSecretsPrefix/key-priv" and value "privateKey"
         const response = await kvs.setValue(key, value);
