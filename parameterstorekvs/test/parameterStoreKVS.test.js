@@ -28,18 +28,18 @@ describe('Test SystemsManagerKVS', () => {
 
     it('Test setValue', async () => {
         const res = await kvs.setValue(key, value);
-        assert.equal(res.Tier, "Standard");
+        assert.strictEqual(res.Tier, "Standard");
     }).timeout(5000);
 
     it('Test getValue from cache', async () => {
         const res = await kvs.getValue(key);
-        assert.equal(res, value);
+        assert.strictEqual(res, value);
     });
 
     it('Test getValue with cache expired', () => {
         setTimeout(async () => {
             const res = await kvs.getValue(key);
-            assert.equal(res, value);
+            assert.strictEqual(res, value);
         }, 1000)
     });
 });

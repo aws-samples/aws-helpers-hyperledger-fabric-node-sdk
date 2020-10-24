@@ -50,6 +50,7 @@ module.exports = class ParameterStoreKVS {
                 logger.debug(`${fcnName}: Retrieved value from cache`);
                 resolve(cachedValue);
             } else {
+                logger.debug(`${fcnName}: No cached value. Retrieving from Parameter Store service`);
                 const params = {
                     Name: paramId,
                     WithDecryption: true
@@ -73,7 +74,6 @@ module.exports = class ParameterStoreKVS {
     setValue(key, value) {
         const fcnName = "[ParameterStoreKVS.setValue]";
         const paramId = this.prefix + key;
-        const data = value;
         const ssm = this.__ssm;
 
         return new Promise(async (resolve, reject) => {
@@ -82,7 +82,7 @@ module.exports = class ParameterStoreKVS {
                 /* required */
                 Type: "String",
                 /* required */
-                Value: data,
+                Value: value,
                 /* required */
                 //AllowedPattern: 'STRING_VALUE',
                 Description: 'Parameter for a custom application',
@@ -117,8 +117,8 @@ module.exports = class ParameterStoreKVS {
                         }
                         setTimeout(async () => {
                             try {
-                                const data = this.setValue(key, value);
-                                resolve(data);
+                                const returnedData = await this.setValue(key, value);
+                                resolve(returnedData);
                             } catch (err) {
                                 reject(`${fcnName} ${err}`);
                             }

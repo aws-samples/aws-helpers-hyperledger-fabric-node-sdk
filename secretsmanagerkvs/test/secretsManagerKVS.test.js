@@ -34,12 +34,12 @@ describe('Test SecretsManagerKVS', () => {
     it('Test setValue', async () => {
         const res = await kvs.setValue(key, value);
         console.log(`Res: ${JSON.stringify(res)}`);
-        assert.equal(res, value);
+        assert.strictEqual(res, value);
     }).timeout(10000);
 
     it('Test getValue', async () => {
         const res = await kvs.getValue(key);
-        assert.equal(res, value);
+        assert.strictEqual(res, value);
     });
 
 });
