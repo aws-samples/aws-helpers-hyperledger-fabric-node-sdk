@@ -1,6 +1,6 @@
 {
   "name": "aws-helpers-hlf-node-secretsmanagerkvs",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Implementation of Key-Value Store interface for Amazon Secrets Manager service.",
   "main": "app.js",
   "scripts": {
